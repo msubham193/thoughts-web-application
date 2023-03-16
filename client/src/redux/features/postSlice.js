@@ -61,16 +61,16 @@ export const bookMarkPost = createAsyncThunk("bookMarkPost", async (id) => {
 });
 
 export const commentPost = createAsyncThunk("commentPost", async (comment) => {
+  console.log(comment);
   try {
-    const { data } = await axios.put(`post/comment`, comment);
-    return data.post;
+    await axios.put(`post/comment/${comment.id}`, comment.comment);
   } catch (error) {
+    console.log(error.message);
     return error.message;
   }
 });
 
 export const updatePost = createAsyncThunk("updatePost", async (value) => {
-
   try {
     const { data } = await axios.put(`post/update/${value.id}`, value);
     return data.post;
@@ -116,7 +116,6 @@ const postSlice = createSlice({
       })
       .addCase(commentPost.fulfilled, (state, action) => {
         state.status = "succseed";
-        state.posts.push(action.payload);
       })
       .addCase(updatePost.pending, (state, action) => {
         state.status = "loading";

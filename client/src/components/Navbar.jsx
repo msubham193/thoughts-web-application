@@ -41,7 +41,7 @@ const Navbar = () => {
             <img
               src={user?.avatar}
               alt=""
-              className="rounded-full h-10 w-10 object-cover"
+              className="rounded-full h-8 w-8 sm:h-10 sm:w-10 object-cover"
               onClick={() => navigate("/profile")}
             />
           ) : (
@@ -65,7 +65,7 @@ const Navbar = () => {
             </div>
           ) : (
             <div
-              className=" hover:scale-110 transition duration-300 ease-in-out cursor-pointer bg-gradient-to-r from-sky-400 to-blue-500 px-3 py-2 rounded-xl  text-white flex items-center gap-1 "
+              className=" hover:scale-110 transition duration-300 ease-in-out cursor-pointer bg-gradient-to-r from-sky-400 to-blue-500 text-xs sm:text-base  px-1 sm:px-3 py-2 rounded-md sm:rounded-xl  text-white flex items-center gap-1 "
               onClick={() => navigate("/create")}
             >
               <AiOutlinePlus />
@@ -77,7 +77,7 @@ const Navbar = () => {
             <img
               src={Logout}
               alt="logout"
-              className="h-9 w-9"
+              className="sm:h-9 sm:w-9 h-6 w-6"
               onClick={logout}
             />
           ) : (

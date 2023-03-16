@@ -20,14 +20,14 @@ const TabComponent = () => {
     setToggleState(index);
   };
   return (
-    <div className="flex flex-col h-full font-poppins  w-full px-10 ">
+    <div className="flex flex-col h-full font-poppins w-full  ">
       <div className=" flex items-center justify-center  w-full ">
-        <div className="flex text-black gap-x-5 px-4  ">
+        <div className="flex text-black gap-x-2 sm:gap-x-5 px-4  ">
           <h1
             className={
               toggleState === 1
-                ? "relative text-xl text-sky-600 scale-90 hover:cursor-pointer font-bold"
-                : "relative text-xl hover:cursor-pointer"
+                ? "relative text-sm md:text-xl text-sky-600 scale-90 hover:cursor-pointer font-bold"
+                : "relative text-sm md:text-xl hover:cursor-pointer"
             }
             onClick={() => toggleTab(1)}
           >
@@ -37,8 +37,8 @@ const TabComponent = () => {
           <h1
             className={
               toggleState === 2
-                ? "relative text-xl text-sky-600 scale-90 hover:cursor-pointer font-bold"
-                : "relative text-xl hover:cursor-pointer"
+                ? "relative text-sm md:text-xl text-sky-600 scale-90 hover:cursor-pointer font-bold"
+                : "relative text-sm md:text-xl hover:cursor-pointer"
             }
             onClick={() => toggleTab(2)}
           >
@@ -48,8 +48,8 @@ const TabComponent = () => {
           <h1
             className={
               toggleState === 3
-                ? "relative text-xl text-sky-600 scale-90 hover:cursor-pointer font-bold "
-                : "relative text-xl hover:cursor-pointer"
+                ? "relative text-sm md:text-xl text-sky-600 scale-90 hover:cursor-pointer font-bold "
+                : "relative text-sm md:text-xl hover:cursor-pointer"
             }
             onClick={() => toggleTab(3)}
           >
@@ -59,8 +59,8 @@ const TabComponent = () => {
           <h1
             className={
               toggleState === 4
-                ? "relative text-xl text-sky-600 scale-90 hover:cursor-pointer font-bold "
-                : "relative text-xl hover:cursor-pointer"
+                ? "relative text-sm md:text-xl text-sky-600 scale-90 hover:cursor-pointer font-bold "
+                : "relative text-sm md:text-xl hover:cursor-pointer"
             }
             onClick={() => toggleTab(4)}
           >
@@ -74,7 +74,7 @@ const TabComponent = () => {
           <div
             className={
               toggleState === 1
-                ? "toggle_show  gap-10 gap-x-10  grid w-full lg:grid-cols-3 md:grid-cols-3 sm:grid-rows-3 grid-cols-2  justify-items-center"
+                ? "toggle_show  gap-10 gap-x-10  grid w-full lg:grid-cols-3 md:grid-cols-3 sm:grid-rows-3 grid-cols-1  justify-items-center"
                 : "hidden"
             }
           >
@@ -86,7 +86,7 @@ const TabComponent = () => {
           <div
             className={
               toggleState === 2
-                ? "toggle_show  gap-10 gap-x-10  grid w-full lg:grid-cols-3 md:grid-cols-3 sm:grid-rows-3 grid-cols-2  justify-items-center"
+                ? "toggle_show  gap-10 gap-x-10  grid w-full lg:grid-cols-3 md:grid-cols-3 sm:grid-rows-3 grid-cols-1  justify-items-center"
                 : "hidden"
             }
           >
@@ -98,7 +98,7 @@ const TabComponent = () => {
           <div
             className={
               toggleState === 3
-                ? "toggle_show  gap-10 gap-x-10  grid w-full lg:grid-cols-3 md:grid-cols-3 sm:grid-rows-3 grid-cols-2  justify-items-center"
+                ? "toggle_show  gap-10 gap-x-10  grid w-full lg:grid-cols-3 md:grid-cols-3 sm:grid-rows-3 grid-cols-1  justify-items-center"
                 : "hidden"
             }
           >
@@ -109,7 +109,7 @@ const TabComponent = () => {
           <div
             className={
               toggleState === 4
-                ? "toggle_show  gap-10 gap-x-10  grid w-full lg:grid-cols-3 md:grid-cols-3 sm:grid-rows-3 grid-cols-2  justify-items-center"
+                ? "toggle_show  gap-10 gap-x-10  grid w-full lg:grid-cols-3 md:grid-cols-3 sm:grid-rows-3 grid-cols-1  justify-items-center"
                 : "hidden"
             }
           >

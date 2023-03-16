@@ -17,7 +17,7 @@ import PhotoUpload from "./pages/PhotoUpload";
 import CreatePost from "./pages/CreatePost";
 import { fetchPost, getPostStatus } from "./redux/features/postSlice";
 
-axios.defaults.baseURL = "https://thoughts-backend.onrender.com/api";
+axios.defaults.baseURL = "http://localhost:8080/api";
 axios.defaults.withCredentials = true;
 
 function App() {

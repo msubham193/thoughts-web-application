@@ -1,4 +1,4 @@
-exports.sendToken = (user, statusCode, res) => {
+exports.sendToken = (user, statusCode, res, userPost) => {
   const token = user.getJWTToken();
 
   console.log(token);
@@ -15,6 +15,7 @@ exports.sendToken = (user, statusCode, res) => {
   res.status(statusCode).cookie("token", token, options).json({
     success: true,
     user,
+    post: userPost,
     token,
   });
 };

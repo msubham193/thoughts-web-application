@@ -17,6 +17,10 @@ const HomePage = () => {
   const status = useSelector(selectStatus);
   const postStatus = useSelector(getPostStatus);
 
+  useEffect(() => {
+  
+  });
+
   if (status === "pending" || postStatus === "loading") {
     return <Loading />;
   }

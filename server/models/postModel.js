@@ -17,36 +17,43 @@ const postSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  like: {
-    type: Number,
-    default: 0,
-  },
-  dislike: {
-    type: Number,
-    default: 0,
-  },
-  avtar: {
-    public_id: {
-      type: String,
-      required: true,
-    },
-    url: {
-      type: String,
-      required: true,
-    },
+  likes: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
+
+  bookmark: [{ type: mongoose.Schema.ObjectId, ref: "User" }],
+  avatar: {
+    type: String,
+    required: true,
   },
   image: {
-    public_id: {
-      type: String,
-      required: true,
-    },
-    url: {
-      type: String,
-      required: true,
-    },
+    type: String,
+    required: true,
   },
+  author: {
+    type: mongoose.Schema.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  comments: [
+    {
+      user: {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+      },
+      name: {
+        type: String,
+      },
+      avatar: {
+        type: String,
+      },
+      comment: {
+        type: String,
+      },
+    },
+  ],
   createdAt: {
     type: Date,
     default: Date.now,
   },
 });
+
+module.exports = mongoose.model("Post", postSchema);

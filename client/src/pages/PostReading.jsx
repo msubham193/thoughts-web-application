@@ -13,22 +13,26 @@ import Comment from "../assets/comment.png";
 import Loading from "../components/Loading";
 import { toast } from "react-hot-toast";
 import axios from "axios";
+import { MdOutlineSummarize } from "react-icons/md";
 import { selectAllUser } from "../redux/features/userSlice";
 import AuthorSection from "../components/AuthorSection";
+import { summarize } from "../util/request/summarization";
+import Processing from "../components/Processing";
 
 const PostReading = () => {
   const dispatch = useDispatch();
 
-  const { posts } = useSelector(selectAllPost);
+  // const { posts } = useSelector(selectAllPost);
 
   const [comment, setComment] = useState("");
 
   const [loading, setLoading] = useState(false);
+  const [sloading, setSloading] = useState(false);
 
   const { id } = useParams();
-  console.log(id);
 
   const [post, setPost] = useState();
+  const [summarizedText, setSummrizedText] = useState("");
   // console.log(post);
   useEffect(() => {
     setLoading(true);
@@ -51,12 +55,31 @@ const PostReading = () => {
     dispatch(
       commentPost({
         comment,
-        postId: post._id,
+        id: post?._id,
       })
     );
     window.location.reload();
     toast.success("Commented!");
   };
+
+  const handleSummarizer = async () => {
+    setSloading(true);
+    summarize({
+      inputs: post?.content,
+    }).then((response) => {
+      setSummrizedText(JSON.stringify(response[0].summary_text));
+
+      setSloading(false);
+    });
+  };
+
+  if (sloading == true) {
+    return (
+      <div>
+        <Processing />
+      </div>
+    );
+  }
 
   if (loading == true) {
     return (
@@ -86,19 +109,32 @@ const PostReading = () => {
             className="w-full h-80 object-fill rounded-md"
           />
           <div className="sm:p-10 p-3 ">
-            <div className="flex items-center gap-3 ">
-              <div className="h-12 w-12  ">
-                <img
-                  src={post?.avatar}
-                  alt="Avatar"
-                  className="rounded-full h-12 w-12"
-                />
+            <div className="flex items-center justify-between ">
+              <div className="flex items-center gap-3">
+                <div className="h-12 w-12  ">
+                  <img
+                    src={post?.avatar}
+                    alt="Avatar"
+                    className="rounded-full h-12 w-12"
+                  />
+                </div>
+                <div className="flex flex-col text-base">
+                  <span className="font-extrabold">{post?.name}</span>
+                  <span className="font-light">
+                    {post?.createdAt.split("T")[0]}
+                  </span>
+                </div>
               </div>
-              <div className="flex flex-col text-base">
-                <span className="font-extrabold">{post?.name}</span>
-                <span className="font-light">
-                  {post?.createdAt.split("T")[0]}
-                </span>
+              <div
+                className={
+                  summarizedText != ""
+                    ? "  disabled: hover:scale-105 transition duration-300 ease-in-out cursor-pointer bg-gradient-to-r from-gray-900 to-gray-600  text-xs sm:text-base  px-1 sm:px-3 py-2 rounded-sm sm:rounded-xl  text-white flex items-center gap-1 "
+                    : "hover:scale-105 transition duration-300 ease-in-out cursor-pointer bg-gradient-to-r from-sky-400 to-blue-500 text-xs sm:text-base  px-1 sm:px-3 py-2 rounded-md sm:rounded-xl  text-white flex items-center gap-1 "
+                }
+                onClick={handleSummarizer}
+              >
+                <MdOutlineSummarize />
+                {summarizedText != "" ? "Summarized" : "Summarize"}
               </div>
             </div>
             <h1
@@ -111,8 +147,19 @@ const PostReading = () => {
               #{post?.category}
             </h1>
 
-            <div className="mt-7 text-sm sm:text-lg tracking-wide first-letter:text-4xl font-light mb-10">
-              {post?.content}
+            {summarizedText != "" ? (
+              <h1 className="text-green-700 mt-6">
+                | Content reduced by{" "}
+                {Math.floor(
+                  (summarizedText.length / post?.content.length) * 100
+                )}
+                %
+              </h1>
+            ) : (
+              ""
+            )}
+            <div className="mt-4 text-sm sm:text-lg tracking-wide first-letter:text-4xl font-light mb-10">
+              {summarizedText != "" ? summarizedText : post?.content}
             </div>
             <hr />
             <div className="mt-5 p-5 bg-white shadow-md">

@@ -27,16 +27,22 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: "Male",
   },
+  followers: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+    },
+  ],
+  following: [
+    {
+      type: mongoose.Schema.ObjectId,
+      ref: "User",
+    },
+  ],
 
   avatar: {
-    public_id: {
-      type: String,
-      required: true,
-    },
-    url: {
-      type: String,
-      required: true,
-    },
+    type: String,
+    required: true,
   },
 
   role: {

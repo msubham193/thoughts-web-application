@@ -47,7 +47,7 @@ const Profile = () => {
           following
         </h1>{" "}
       </div>
-      <p className="font-thin text-gray-500 tracking-wide text-center p-5 w-[40%]">
+      <p className="font-thin text-gray-500 tracking-wide text-center p-3 sm:p-5 w-[70%]">
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam,
         voluptas officia! Quae sunt fugit laboriosam, eveniet soluta fugiat.
         Consequuntur, alias.

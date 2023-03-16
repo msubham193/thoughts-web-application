@@ -74,12 +74,12 @@ const CreatePost = () => {
   };
 
   return (
-    <div className="py-12 flex justify-center font-poppins bg-[#FFFBF5]">
+    <div className="py-12 flex justify-center font-poppins  bg-[#FFFBF5]">
       <Toaster />
       <form
         action=""
         onSubmit={handleOnSubmit}
-        className="w-[50%] p-5 h-full  shadow-2xl bg-white rounded-2xl "
+        className="md:w-[50%] w-[80%] p-5 h-full  shadow-2xl bg-white rounded-2xl "
       >
         <div className="text-xl font-bold text-sky-700 text-center  tracking-wide ">
          {id?"Update Post !":"Create  Post !"} 
