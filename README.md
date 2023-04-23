@@ -53,6 +53,10 @@ Start the server
 to run back-end
 
 ```bash
+   cd server
+```
+
+```bash
    npm install
 ```
 
